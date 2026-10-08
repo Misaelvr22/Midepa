@@ -46,7 +46,7 @@ const PIECES = [
 const LABELS = [
   { piece: "techo", x: 1880, y: 130, side: "right", text: "Cubierta de concreto y vigas de madera" },
   { piece: "cielo", x: 630, y: 360, side: "left", text: "Cielo falso de yeso" },
-  { piece: "muro-izq", x: 330, y: 400, side: "top", text: "Muro exterior y aislamiento térmico" },
+  { piece: "muro-izq", x: 330, y: 1205, side: "bottom", text: "Muro exterior y aislamiento térmico" },
   { piece: "puerta", x: 1630, y: 480, side: "top", text: "Cancel de aluminio y vidrio templado" },
   { piece: "muro-der", x: 2200, y: 440, side: "top", text: "Muro de estuco" },
   { piece: "piso", x: 1770, y: 1250, side: "right", text: "Piso de porcelanato" },

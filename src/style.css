@@ -243,6 +243,7 @@
 .armado-etiqueta[data-side="right"] { translate: 0 -50%; }
 .armado-etiqueta[data-side="left"] { translate: -100% -50%; }
 .armado-etiqueta[data-side="top"] { translate: -50% -100%; }
+.armado-etiqueta[data-side="bottom"] { translate: -50% 0; }
 @media (max-width: 767px) {
   .armado-etiqueta { display: none; }
 }
