@@ -1,0 +1,7 @@
+node_modules
+dist
+
+# Skills de diseño del editor (no son parte de la página)
+.agents
+.claude
+skills-lock.json

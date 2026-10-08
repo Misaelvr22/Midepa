@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content" />
+    <meta name="description" content="Reseñas de cuartos y caseros escritas por estudiantes foráneos, alertas de estafas y guía del barrio antes de rentar." />
+    <meta name="theme-color" content="#ffffff" />
+    <title>MiDepa | Renta sin sorpresas lejos de casa</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <script>document.documentElement.classList.add("js");</script>
+    <script type="module" src="/src/main.js"></script>
+  </head>
+  <body>
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink">Saltar al contenido</a>
+
+    <!-- NAV -->
+    <header class="sticky top-0 z-40 border-b border-line/70 bg-bg/85 backdrop-blur-md">
+      <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:px-8" aria-label="Principal">
+        <a href="#" class="flex items-center rounded-lg" aria-label="MiDepa, ir al inicio">
+          <img src="./src/assets/general/midepa-logo.svg" alt="MiDepa" width="84" height="45" class="h-11 w-auto" />
+        </a>
+
+        <ul class="hidden items-center gap-8 text-[15px] text-muted md:flex">
+          <li><a class="transition-colors hover:text-ink" href="#como-funciona">Cómo funciona</a></li>
+          <li><a class="transition-colors hover:text-ink" href="#funciones">Funciones</a></li>
+          <li><a class="transition-colors hover:text-ink" href="#buscar">Buscar</a></li>
+          <li><a class="transition-colors hover:text-ink" href="#preguntas">Preguntas</a></li>
+        </ul>
+
+        <div class="flex items-center gap-2">
+          <a href="#lista" class="btn-primary hidden py-2.5! sm:inline-flex">Únete a la lista</a>
+          <button id="menu-btn" type="button" class="grid size-11 cursor-pointer place-items-center rounded-full text-ink hover:bg-surface-2 md:hidden" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú">
+            <i class="ph ph-list text-2xl" aria-hidden="true"></i>
+          </button>
+        </div>
+      </nav>
+
+      <div id="menu-movil" class="hidden border-t border-line bg-bg px-4 pb-6 pt-2 md:hidden">
+        <ul class="flex flex-col text-lg">
+          <li><a class="block py-3" href="#como-funciona">Cómo funciona</a></li>
+          <li><a class="block py-3" href="#funciones">Funciones</a></li>
+          <li><a class="block py-3" href="#buscar">Buscar</a></li>
+          <li><a class="block py-3" href="#preguntas">Preguntas</a></li>
+        </ul>
+        <a href="#lista" class="btn-primary mt-3 w-full">Únete a la lista</a>
+      </div>
+    </header>
+
+    <main id="contenido">
+      <!-- HERO con video (toma aérea en loop de ida y vuelta, ver src/assets) -->
+      <section id="hero" class="relative px-2 pt-2 md:px-4 md:pt-3">
+        <div id="hero-frame" class="relative isolate flex h-[calc(100dvh-4.5rem)] min-h-[560px] overflow-hidden rounded-[1.75rem] bg-neutral-800 md:h-[calc(100dvh-5rem)] md:rounded-[2rem]">
+          <video
+            id="hero-video"
+            class="absolute inset-0 -z-20 size-full origin-center object-cover"
+            poster="./src/assets/videohero-poster.jpg"
+            autoplay muted loop playsinline preload="auto"
+            aria-hidden="true"
+          >
+            <source src="./src/assets/videohero-loop.mp4" type="video/mp4" />
+          </video>
+          <!-- Velos para que el texto se lea sobre el video -->
+          <div class="absolute inset-0 -z-10 bg-gradient-to-t from-neutral-800/85 via-neutral-800/35 to-neutral-800/10"></div>
+          <div class="absolute inset-0 -z-10 bg-gradient-to-r from-neutral-800/60 via-transparent to-transparent"></div>
+
+          <div class="mx-auto grid w-full max-w-7xl items-end gap-10 self-end px-5 pb-10 md:px-10 md:pb-14 lg:grid-cols-12">
+            <div id="hero-copy" class="lg:col-span-7">
+              <h1 class="text-4xl font-semibold leading-[1.05] tracking-tight text-white md:text-5xl lg:text-6xl" data-hero-in>
+                Renta sin sorpresas, aunque estés <span class="text-[#ff8fa3]">lejos de casa</span>.
+              </h1>
+              <p class="mt-6 max-w-[44ch] text-lg leading-relaxed text-neutral-100" data-hero-in>
+                Reseñas de cuartos y caseros escritas por estudiantes que ya vivieron ahí. Entérate antes de pagar el depósito.
+              </p>
+              <div class="mt-9 flex flex-wrap gap-3" data-hero-in>
+                <a href="#lista" class="btn-primary">Únete a la lista <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+                <a href="#buscar" class="btn text-white ring-1 ring-white/40 backdrop-blur-sm hover:bg-white/10">Busca tu zona</a>
+              </div>
+            </div>
+
+            <!-- Tarjeta de reseña: componente real del producto, no captura -->
+            <div id="hero-card" class="hidden md:block md:w-80 lg:col-span-4 lg:col-start-9 lg:w-full lg:max-w-sm lg:justify-self-end">
+            <article class="rounded-3xl border border-line bg-surface p-5 shadow-soft" data-hero-in>
+              <div class="flex items-start justify-between gap-3">
+                <div>
+                  <p class="font-display font-semibold">Cuarto en casa compartida</p>
+                  <p class="mt-0.5 text-sm text-muted">A 12 min caminando del campus</p>
+                </div>
+                <p class="flex items-center gap-1 font-display text-lg font-semibold">
+                  <i class="ph-fill ph-star text-accent" aria-hidden="true" data-star></i><span data-count="4.6" data-decimals="1">4.6</span>
+                </p>
+              </div>
+              <p class="mt-4 text-[15px] leading-relaxed">“La dueña devolvió el depósito completo y el internet sí aguanta videollamadas.”</p>
+              <p class="mt-4 flex items-center gap-1.5 text-sm text-success">
+                <i class="ph ph-seal-check text-base" aria-hidden="true"></i> Vivió ahí 2 semestres
+              </p>
+            </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Telón: el resto de la página sube por encima del hero fijo (ver #hero en style.css) -->
+      <div id="telon" class="relative z-10 overflow-clip bg-bg">
+      <!-- PRESENTACIÓN: la casa se arma con el scroll y la cámara entra a la recámara (src/armado.js) -->
+      <section id="armado" class="relative h-[520vh] max-md:h-[440vh]" aria-label="Cómo está hecho un cuarto">
+        <div id="armado-stage" class="sticky top-[calc(4rem+1px)] h-[calc(100dvh-4rem-1px)] overflow-hidden bg-neutral-800">
+          <img id="armado-fondo" src="./src/assets/armado/paisaje.webp" alt="" width="2000" height="1342" class="absolute inset-0 size-full object-cover" />
+          <div id="armado-casa" class="absolute left-1/2 top-[54%]" role="img" aria-label="Casa modular separada en capas: cubierta, vigas, cielo falso, muros, aislamiento, cancel de vidrio, piso y cimentación"></div>
+          <img id="armado-interior" src="./src/assets/armado/interior.webp" alt="Recámara con cama matrimonial, lámparas de mimbre y ventanal hacia el jardín" width="2200" height="1228" loading="lazy" class="absolute inset-0 size-full object-cover opacity-0" />
+          <div id="armado-velo" class="pointer-events-none absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-neutral-900/60 to-transparent" aria-hidden="true"></div>
+
+          <div class="pointer-events-none absolute inset-x-0 top-0 mx-auto max-w-7xl px-4 pt-8 md:px-8 md:pt-12">
+            <div class="armado-texto" data-armado-caption="0,0.18">
+              <p class="text-sm font-medium uppercase tracking-[0.14em] text-white/80">Antes de rentar</p>
+              <h2 class="mt-3 max-w-[18ch] text-3xl font-semibold leading-[1.1] tracking-tight text-white md:text-5xl">Un cuarto es más que cuatro paredes.</h2>
+              <p class="mt-4 flex items-center gap-2 text-white/85"><i class="ph ph-arrow-down" aria-hidden="true"></i>Baja para verlo armarse</p>
+            </div>
+            <div class="armado-texto" data-armado-caption="0.2,0.44">
+              <h2 class="max-w-[20ch] text-3xl font-semibold leading-[1.1] tracking-tight text-white md:text-5xl">Revisa de qué está hecho.</h2>
+              <p class="mt-4 max-w-[44ch] text-lg leading-relaxed text-white/85">Muros, aislamiento, ventanas y piso. Lo que no sale en la foto del anuncio, lo cuentan las reseñas.</p>
+            </div>
+            <div class="armado-texto" data-armado-caption="0.46,0.66">
+              <h2 class="max-w-[20ch] text-3xl font-semibold leading-[1.1] tracking-tight text-white md:text-5xl">Pieza por pieza, todo encaja.</h2>
+            </div>
+            <div class="armado-texto" data-armado-caption="0.88,1">
+              <h2 class="max-w-[18ch] text-3xl font-semibold leading-[1.1] tracking-tight text-white md:text-5xl">Ahora entra.</h2>
+              <p class="mt-4 max-w-[40ch] text-lg leading-relaxed text-white/90">Recorre el cuarto en 360° antes de pagar el depósito.</p>
+              <a href="#recorrido" class="btn-primary pointer-events-auto mt-7">Ver un recorrido <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EL PROBLEMA + RECORRIDO INTERACTIVO (visor en src/tour.js) -->
+      <section id="recorrido" class="bg-surface-2">
+        <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 md:px-8 md:py-28 lg:grid-cols-12 lg:gap-16">
+          <div class="lg:col-span-5" data-reveal>
+            <h2 data-split class="text-3xl font-semibold tracking-tight md:text-5xl">Rentar desde otra ciudad es rentar a ciegas.</h2>
+            <p class="mt-5 max-w-[46ch] text-lg leading-relaxed text-muted">
+              Las fotos se recortan y los anuncios exageran. Aquí recorres el cuarto tú mismo antes de pagar el depósito.
+            </p>
+            <ul class="mt-8 grid gap-4 text-[15px]">
+              <li class="flex items-start gap-3"><i class="ph ph-hand-grabbing mt-0.5 text-xl text-accent" aria-hidden="true"></i>Mira hacia cualquier lado, como si estuvieras parado en medio del cuarto.</li>
+              <li class="flex items-start gap-3"><i class="ph ph-info mt-0.5 text-xl text-accent" aria-hidden="true"></i>Toca los puntos para ver detalles de la cama, la cocineta o el escritorio.</li>
+              <li class="flex items-start gap-3"><i class="ph ph-chat-circle-text mt-0.5 text-xl text-accent" aria-hidden="true"></i>Compara lo que ves con lo que cuentan quienes ya vivieron ahí.</li>
+            </ul>
+          </div>
+
+          <div class="lg:col-span-7" data-reveal style="--i: 1">
+            <article class="group overflow-hidden rounded-3xl bg-surface shadow-soft" data-parallax="-40">
+              <button id="tour-open" type="button" class="relative block w-full cursor-pointer overflow-hidden text-left" aria-haspopup="dialog">
+                <img
+                  id="tour-thumb"
+                  src="./src/assets/cuartos/guadalajara/colonia-olimpica-estudio-360-tarjeta.jpg"
+                  alt="Estudio amueblado con escritorio, clóset alto y cama matrimonial"
+                  width="1280" height="800" loading="lazy" data-parallax-img
+                  class="aspect-[16/10] w-full object-cover transition-[scale] duration-700 ease-out group-hover:scale-[1.03]"
+                />
+                <span class="absolute inset-0 bg-gradient-to-t from-neutral-800/45 via-transparent to-transparent" aria-hidden="true"></span>
+                <span class="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2.5 text-[15px] font-medium text-ink shadow-soft transition-transform duration-300 group-hover:-translate-y-0.5 md:bottom-5 md:left-5">
+                  <i class="ph ph-cube-focus text-lg text-accent" aria-hidden="true"></i>
+                  Explorar habitación en 360°
+                </span>
+              </button>
+              <div class="flex flex-wrap items-end justify-between gap-4 p-5 md:p-6">
+                <div>
+                  <h3 class="text-xl font-semibold">Estudio amueblado con cocineta</h3>
+                  <p class="mt-1 text-sm text-muted">Colonia Olímpica, Guadalajara. A 6 min caminando de UdeG CUCEI</p>
+                </div>
+                <div class="text-right">
+                  <p class="flex items-center justify-end gap-1 font-display font-semibold"><i class="ph-fill ph-star text-accent" aria-hidden="true" data-star></i><span data-count="4.2" data-decimals="1">4.2</span> <span class="font-sans text-sm font-normal text-muted">(2 reseñas)</span></p>
+                  <p class="mt-0.5 font-display text-lg font-semibold tabular-nums"><span data-count="8200" data-prefix="$">$8,200</span> <span class="font-sans text-sm font-normal text-muted">al mes, real</span></p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CÓMO FUNCIONA -->
+      <section id="como-funciona" class="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
+        <h2 data-split class="max-w-2xl text-3xl font-semibold tracking-tight md:text-5xl">De la búsqueda a las llaves, con información real.</h2>
+
+        <ol class="relative mt-16 grid gap-12 md:grid-cols-3 md:gap-8">
+          <div class="absolute left-7 right-7 top-7 hidden h-px bg-line md:block" aria-hidden="true">
+            <div id="pasos-linea" class="h-0.5 -translate-y-px origin-left bg-accent"></div>
+          </div>
+          <li class="relative" data-reveal>
+            <span class="paso-icono relative grid size-14 place-items-center rounded-full bg-accent text-accent-ink" aria-hidden="true">
+              <i class="ph ph-magnifying-glass text-2xl"></i>
+            </span>
+            <h3 class="mt-6 text-2xl font-semibold">Busca tu zona</h3>
+            <p class="mt-2 max-w-[34ch] leading-relaxed text-muted">Escribe tu universidad y ve los cuartos y colonias que otros estudiantes ya calificaron.</p>
+          </li>
+          <li class="relative" data-reveal style="--i: 1">
+            <span class="paso-icono relative grid size-14 place-items-center rounded-full bg-accent text-accent-ink" aria-hidden="true">
+              <i class="ph ph-chat-circle-text text-2xl"></i>
+            </span>
+            <h3 class="mt-6 text-2xl font-semibold">Compara antes de pagar</h3>
+            <p class="mt-2 max-w-[34ch] leading-relaxed text-muted">Lee reseñas del casero, revisa alertas de estafa y compara el precio anunciado con el real.</p>
+          </li>
+          <li class="relative" data-reveal style="--i: 2">
+            <span class="paso-icono relative grid size-14 place-items-center rounded-full bg-accent text-accent-ink" aria-hidden="true">
+              <i class="ph ph-house-line text-2xl"></i>
+            </span>
+            <h3 class="mt-6 text-2xl font-semibold">Cuenta tu experiencia</h3>
+            <p class="mt-2 max-w-[34ch] leading-relaxed text-muted">Cuando te mudes, deja tu reseña. Así el siguiente foráneo llega mejor preparado.</p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- FUNCIONES (bento de 3) -->
+      <section id="funciones" class="mx-auto max-w-7xl px-4 pb-20 md:px-8 md:pb-28">
+        <p class="text-sm font-medium uppercase tracking-[0.16em] text-accent" data-reveal>Funciones</p>
+        <h2 data-split class="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-5xl">Todo lo que te gustaría saber antes de firmar.</h2>
+
+        <div class="mt-14 grid gap-5 md:grid-cols-5 md:grid-rows-2">
+          <!-- Reseñas: celda grande con foto -->
+          <article class="relative isolate flex min-h-[420px] flex-col justify-end overflow-hidden rounded-3xl p-7 md:col-span-3 md:row-span-2 md:p-10" data-reveal>
+            <img src="./src/assets/general/funciones-resenas.jpg" alt="" width="1280" height="853" loading="lazy" class="absolute inset-0 -z-10 size-full object-cover" data-parallax-img />
+            <div class="absolute inset-0 -z-10 bg-gradient-to-t from-neutral-800/90 via-neutral-800/45 to-transparent"></div>
+            <i class="ph ph-chat-circle-text text-4xl text-white" aria-hidden="true"></i>
+            <h3 class="mt-4 text-3xl font-semibold text-white md:text-4xl">Reseñas de cuartos y caseros</h3>
+            <p class="mt-3 max-w-[48ch] leading-relaxed text-neutral-100">
+              Limpieza, trato del casero, ruido, internet y si devolvieron el depósito. Escritas por estudiantes que vivieron ahí, no por el anunciante.
+            </p>
+          </article>
+
+          <!-- Alertas de estafa: fondo de advertencia -->
+          <article class="flex flex-col rounded-3xl bg-warn-soft p-7 md:col-span-2" data-reveal style="--i: 1">
+            <div class="flex items-center gap-3 text-warn">
+              <i class="ph ph-warning text-3xl" aria-hidden="true"></i>
+              <h3 class="text-2xl font-semibold">Alertas de estafa</h3>
+            </div>
+            <p class="mt-3 leading-relaxed text-ink/80">Avisos de la comunidad sobre anuncios falsos y patrones comunes para que los reconozcas a tiempo.</p>
+            <div class="mt-5 rounded-2xl border border-warn/25 bg-surface p-4 text-[15px]">
+              <p class="font-medium">Anuncio reportado 3 veces</p>
+              <p class="mt-1 text-muted">Pide depósito por transferencia y no permite visitar el cuarto.</p>
+            </div>
+          </article>
+
+          <!-- Guía del barrio: fondo del acento -->
+          <article class="flex flex-col rounded-3xl bg-accent-soft p-7 md:col-span-2" data-reveal style="--i: 2">
+            <div class="flex items-center gap-3 text-accent">
+              <i class="ph ph-map-pin text-3xl" aria-hidden="true"></i>
+              <h3 class="text-2xl font-semibold">Guía del barrio</h3>
+            </div>
+            <p class="mt-3 leading-relaxed text-ink/80">Lo que hay alrededor, con precios que reportan los estudiantes.</p>
+            <ul class="mt-5 grid grid-cols-2 gap-3 text-[15px]">
+              <li class="flex items-center gap-2"><i class="ph ph-bowl-food text-xl text-accent" aria-hidden="true"></i>Comida corrida</li>
+              <li class="flex items-center gap-2"><i class="ph ph-bus text-xl text-accent" aria-hidden="true"></i>Ruta al campus</li>
+              <li class="flex items-center gap-2"><i class="ph ph-shopping-cart text-xl text-accent" aria-hidden="true"></i>Mercado y súper</li>
+              <li class="flex items-center gap-2"><i class="ph ph-washing-machine text-xl text-accent" aria-hidden="true"></i>Lavandería</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- DEMO DE BÚSQUEDA (datos hipotéticos, ver src/data.js) -->
+      <section id="buscar" class="bg-surface-2">
+        <div class="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
+          <p class="text-sm font-medium uppercase tracking-[0.16em] text-accent" data-reveal>Demo interactiva</p>
+          <h2 data-split class="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-5xl">Pruébalo: busca la zona de tu universidad.</h2>
+          <p class="mt-4 max-w-[60ch] text-lg leading-relaxed text-muted" data-reveal>Escribe una universidad, colonia o ciudad. Los cuartos, caseros y reseñas son hipotéticos.</p>
+
+          <form id="demo-form" role="search" class="relative z-20 mt-10 max-w-3xl" autocomplete="off" data-reveal>
+            <label for="demo-q" class="sr-only">Universidad, colonia o ciudad</label>
+            <div class="flex flex-col gap-3 rounded-3xl border border-line bg-surface p-2 shadow-soft sm:flex-row sm:items-center sm:rounded-full">
+              <div class="flex flex-1 items-center gap-3 px-4">
+                <i class="ph ph-magnifying-glass text-xl text-muted" aria-hidden="true"></i>
+                <input
+                  id="demo-q" name="q" type="text"
+                  class="h-12 w-full bg-transparent text-base text-ink placeholder:text-muted focus:outline-none"
+                  placeholder="Ej. UNAM, BUAP o Monterrey"
+                  role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="demo-sugerencias"
+                />
+              </div>
+              <button type="submit" class="btn-primary">Buscar</button>
+            </div>
+            <ul id="demo-sugerencias" role="listbox" aria-label="Sugerencias" class="absolute inset-x-0 top-full z-30 mt-2 hidden overflow-hidden rounded-2xl border border-line bg-surface p-1.5 shadow-soft"></ul>
+          </form>
+
+          <!-- Directorio de ciudades y zonas disponibles (se genera desde src/data.js) -->
+          <div class="mt-10" data-reveal>
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <h3 class="flex items-center gap-2 font-display text-lg font-semibold"><i class="ph ph-map-trifold text-xl text-accent" aria-hidden="true"></i>O explora por ciudad</h3>
+              <div role="group" aria-label="Cómo ver las zonas" class="inline-flex rounded-full bg-surface p-1 text-sm ring-1 ring-line">
+                <button type="button" data-vista="mapa" aria-pressed="true" class="inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-2 font-medium transition-colors aria-pressed:bg-accent aria-pressed:text-accent-ink"><i class="ph ph-map-trifold" aria-hidden="true"></i>Mapa</button>
+                <button type="button" data-vista="lista" aria-pressed="false" class="inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-2 font-medium transition-colors aria-pressed:bg-accent aria-pressed:text-accent-ink"><i class="ph ph-list-bullets" aria-hidden="true"></i>Lista</button>
+              </div>
+            </div>
+            <div id="demo-mapa-wrap" class="mt-4">
+              <div id="demo-mapa" class="isolate h-[440px] overflow-hidden rounded-3xl bg-surface-2 ring-1 ring-line md:h-[500px]" role="region" aria-label="Mapa de zonas con cuartos disponibles"></div>
+              <p class="mt-2 text-sm text-muted">Toca una ciudad para acercarte y una zona para ver sus cuartos. La línea punteada marca la distancia a la universidad.</p>
+            </div>
+            <div id="demo-ciudades" hidden class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"></div>
+          </div>
+
+          <div id="demo-resultados" class="mt-12" aria-live="polite">
+            <div class="flex flex-col items-center rounded-3xl border border-dashed border-line px-6 py-16 text-center">
+              <i class="ph ph-map-pin text-4xl text-accent" aria-hidden="true"></i>
+              <p class="mt-4 font-display text-xl font-semibold">Aquí aparecerán los cuartos de la zona</p>
+              <p class="mt-2 max-w-[42ch] text-muted">Busca arriba o elige una zona de la lista. Verás reseñas, alertas de estafa y la guía del barrio.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIOS (carrusel) -->
+      <section class="py-20 md:py-28" aria-labelledby="testimonios-titulo">
+        <div class="mx-auto flex max-w-7xl flex-col gap-6 px-4 md:flex-row md:items-end md:justify-between md:px-8">
+          <div data-reveal>
+            <h2 data-split id="testimonios-titulo" class="text-3xl font-semibold tracking-tight md:text-5xl">Lo que nos contaron otros foráneos.</h2>
+            <p class="mt-3 text-muted">Testimonios de demostración para este prototipo.</p>
+          </div>
+          <div class="flex gap-2" data-reveal>
+            <button type="button" data-scroll="-1" class="grid size-11 cursor-pointer place-items-center rounded-full ring-1 ring-line transition-colors hover:bg-surface-2" aria-label="Testimonio anterior">
+              <i class="ph ph-arrow-right rotate-180 text-xl" aria-hidden="true"></i>
+            </button>
+            <button type="button" data-scroll="1" class="grid size-11 cursor-pointer place-items-center rounded-full ring-1 ring-line transition-colors hover:bg-surface-2" aria-label="Siguiente testimonio">
+              <i class="ph ph-arrow-right text-xl" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+        <ul id="testimonios" class="snap-row mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-px-4 px-4 pb-2 md:scroll-px-8 md:px-8 xl:px-[max(2rem,calc((100vw-80rem)/2+2rem))]" tabindex="0" aria-label="Testimonios">
+          <li class="flex w-[85%] shrink-0 snap-start flex-col justify-between rounded-3xl border border-line bg-surface p-7 sm:w-[420px]">
+            <p class="text-lg leading-relaxed">“Casi transfiero el depósito a un anuncio falso. Si hubiera leído los reportes, me ahorraba el susto.”</p>
+            <div class="mt-8 flex items-center gap-3">
+              <span class="grid size-11 place-items-center rounded-full bg-accent-soft font-display font-semibold text-accent" aria-hidden="true">XC</span>
+              <p class="text-sm"><span class="block font-medium">Ximena Coronel</span><span class="text-muted">De Oaxaca a Puebla, Diseño</span></p>
+            </div>
+          </li>
+          <li class="flex w-[85%] shrink-0 snap-start flex-col justify-between rounded-3xl border border-line bg-surface p-7 sm:w-[420px]">
+            <p class="text-lg leading-relaxed">“Lo que más me sirvió fue saber cuánto se paga de verdad por la luz en cada zona.”</p>
+            <div class="mt-8 flex items-center gap-3">
+              <span class="grid size-11 place-items-center rounded-full bg-accent-soft font-display font-semibold text-accent" aria-hidden="true">JR</span>
+              <p class="text-sm"><span class="block font-medium">Joaquín Ríos</span><span class="text-muted">De Mazatlán a Monterrey, Medicina</span></p>
+            </div>
+          </li>
+          <li class="flex w-[85%] shrink-0 snap-start flex-col justify-between rounded-3xl border border-line bg-surface p-7 sm:w-[420px]">
+            <p class="text-lg leading-relaxed">“Elegí mi cuarto por la reseña del casero. Un año después, sigo ahí y sin problemas.”</p>
+            <div class="mt-8 flex items-center gap-3">
+              <span class="grid size-11 place-items-center rounded-full bg-accent-soft font-display font-semibold text-accent" aria-hidden="true">DQ</span>
+              <p class="text-sm"><span class="block font-medium">Daniela Quiroz</span><span class="text-muted">De Tapachula a la CDMX, Economía</span></p>
+            </div>
+          </li>
+          <li class="flex w-[85%] shrink-0 snap-start flex-col justify-between rounded-3xl border border-line bg-surface p-7 sm:w-[420px]">
+            <p class="text-lg leading-relaxed">“La guía del barrio me dijo qué camión tomar y dónde comer por poco. Mi primera semana fue mucho más fácil.”</p>
+            <div class="mt-8 flex items-center gap-3">
+              <span class="grid size-11 place-items-center rounded-full bg-accent-soft font-display font-semibold text-accent" aria-hidden="true">MV</span>
+              <p class="text-sm"><span class="block font-medium">Mateo Villalobos</span><span class="text-muted">De Culiacán a Guadalajara, Derecho</span></p>
+            </div>
+          </li>
+          <li class="flex w-[85%] shrink-0 snap-start flex-col justify-between rounded-3xl border border-line bg-surface p-7 sm:w-[420px]">
+            <p class="text-lg leading-relaxed">“Dejé mi reseña al salir para que nadie más pase por lo del depósito que no me devolvieron.”</p>
+            <div class="mt-8 flex items-center gap-3">
+              <span class="grid size-11 place-items-center rounded-full bg-accent-soft font-display font-semibold text-accent" aria-hidden="true">RA</span>
+              <p class="text-sm"><span class="block font-medium">Renata Almonte</span><span class="text-muted">De Tampico a Xalapa, Arquitectura</span></p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- PREGUNTAS FRECUENTES -->
+      <section id="preguntas" class="border-t border-line">
+        <div class="mx-auto grid max-w-7xl gap-12 px-4 py-20 md:px-8 md:py-28 lg:grid-cols-12">
+          <h2 data-split class="text-3xl font-semibold tracking-tight md:text-5xl lg:col-span-4">Preguntas frecuentes</h2>
+
+          <div class="divide-y divide-line border-y border-line lg:col-span-8" data-reveal>
+            <div class="faq-item" data-open="false">
+              <h3>
+                <button type="button" class="flex w-full cursor-pointer items-center justify-between gap-6 py-6 text-left text-lg font-medium" aria-expanded="false">
+                  ¿Quién puede escribir reseñas?
+                  <i class="ph ph-plus faq-icon shrink-0 text-xl text-accent transition-transform duration-300" aria-hidden="true"></i>
+                </button>
+              </h3>
+              <div class="faq-panel"><div class="overflow-hidden"><p class="pb-6 leading-relaxed text-muted">Estudiantes que vivieron en el lugar. Pedimos un comprobante sencillo, como un recibo de renta o el contrato, para validar que la reseña es real.</p></div></div>
+            </div>
+            <div class="faq-item" data-open="false">
+              <h3>
+                <button type="button" class="flex w-full cursor-pointer items-center justify-between gap-6 py-6 text-left text-lg font-medium" aria-expanded="false">
+                  ¿Tiene costo para estudiantes?
+                  <i class="ph ph-plus faq-icon shrink-0 text-xl text-accent transition-transform duration-300" aria-hidden="true"></i>
+                </button>
+              </h3>
+              <div class="faq-panel"><div class="overflow-hidden"><p class="pb-6 leading-relaxed text-muted">No. Leer y escribir reseñas es gratis para estudiantes.</p></div></div>
+            </div>
+            <div class="faq-item" data-open="false">
+              <h3>
+                <button type="button" class="flex w-full cursor-pointer items-center justify-between gap-6 py-6 text-left text-lg font-medium" aria-expanded="false">
+                  ¿Qué pasa si un casero no está de acuerdo con una reseña?
+                  <i class="ph ph-plus faq-icon shrink-0 text-xl text-accent transition-transform duration-300" aria-hidden="true"></i>
+                </button>
+              </h3>
+              <div class="faq-panel"><div class="overflow-hidden"><p class="pb-6 leading-relaxed text-muted">Puede responder públicamente debajo de la reseña. No se borran reseñas por ser negativas, solo si incumplen las reglas de la comunidad.</p></div></div>
+            </div>
+            <div class="faq-item" data-open="false">
+              <h3>
+                <button type="button" class="flex w-full cursor-pointer items-center justify-between gap-6 py-6 text-left text-lg font-medium" aria-expanded="false">
+                  ¿En qué ciudades estará disponible?
+                  <i class="ph ph-plus faq-icon shrink-0 text-xl text-accent transition-transform duration-300" aria-hidden="true"></i>
+                </button>
+              </h3>
+              <div class="faq-panel"><div class="overflow-hidden"><p class="pb-6 leading-relaxed text-muted">Empezaremos por las ciudades universitarias con más registros en la lista de espera. Por eso te preguntamos a dónde te mudas.</p></div></div>
+            </div>
+            <div class="faq-item" data-open="false">
+              <h3>
+                <button type="button" class="flex w-full cursor-pointer items-center justify-between gap-6 py-6 text-left text-lg font-medium" aria-expanded="false">
+                  ¿Mis datos son públicos?
+                  <i class="ph ph-plus faq-icon shrink-0 text-xl text-accent transition-transform duration-300" aria-hidden="true"></i>
+                </button>
+              </h3>
+              <div class="faq-panel"><div class="overflow-hidden"><p class="pb-6 leading-relaxed text-muted">No. Tus reseñas muestran solo tu nombre de pila y tu carrera. Tu correo nunca se publica.</p></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LISTA DE ESPERA -->
+      <section id="lista" class="px-4 pb-20 md:px-8 md:pb-28">
+        <div class="mx-auto grid max-w-7xl gap-12 rounded-3xl bg-accent-soft p-7 md:p-12 lg:grid-cols-2 lg:p-16" data-reveal>
+          <div>
+            <h2 data-split class="text-3xl font-semibold tracking-tight md:text-5xl">Llega a tu nueva ciudad sabiendo dónde vas a vivir.</h2>
+            <p class="mt-5 max-w-[46ch] text-lg leading-relaxed text-ink/80">Déjanos tu correo y te avisamos cuando abramos en tu ciudad.</p>
+          </div>
+
+          <form id="form-lista" class="grid gap-5" novalidate>
+            <div class="grid gap-2">
+              <label for="correo" class="text-sm font-medium">Correo electrónico</label>
+              <input id="correo" name="correo" type="email" autocomplete="email" required class="field" placeholder="tu@correo.com" aria-describedby="correo-error" />
+              <p id="correo-error" class="hidden text-sm text-danger" role="alert"></p>
+            </div>
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div class="grid gap-2">
+                <label for="ciudad" class="text-sm font-medium">Ciudad a la que te mudas</label>
+                <input id="ciudad" name="ciudad" type="text" autocomplete="address-level2" required class="field" placeholder="Ej. Guadalajara" aria-describedby="ciudad-error" />
+                <p id="ciudad-error" class="hidden text-sm text-danger" role="alert"></p>
+              </div>
+              <div class="grid gap-2">
+                <label for="universidad" class="text-sm font-medium">Universidad <span class="font-normal text-muted">(opcional)</span></label>
+                <input id="universidad" name="universidad" type="text" class="field" placeholder="Ej. UdeG" />
+              </div>
+            </div>
+            <button type="submit" class="btn-primary mt-1 w-full disabled:cursor-wait disabled:opacity-70 sm:w-auto sm:justify-self-start">
+              <span data-label>Únete a la lista</span>
+              <i class="ph ph-arrow-right" aria-hidden="true"></i>
+            </button>
+            <p class="text-sm text-muted">Sin spam. Solo te escribimos cuando haya novedades en tu ciudad.</p>
+          </form>
+
+          <div id="form-exito" class="hidden flex-col justify-center focus:outline-none" role="status" tabindex="-1">
+            <!-- Check animado: el círculo se dibuja, se rellena y aparece la palomita (src/main.js) -->
+            <span id="exito-check" class="relative grid size-16 place-items-center" aria-hidden="true">
+              <span data-onda class="absolute inset-0 rounded-full bg-success/25 opacity-0"></span>
+              <svg viewBox="0 0 64 64" class="relative size-16 overflow-visible">
+                <circle data-fondo cx="32" cy="32" r="30" class="fill-success" style="transform-box: fill-box; transform-origin: center" />
+                <circle data-aro cx="32" cy="32" r="30" fill="none" stroke-width="4" stroke-linecap="round" class="stroke-success" transform="rotate(-90 32 32)" />
+                <path data-palomita d="M20 33 l8 8 l16 -17" fill="none" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span data-chispas class="absolute inset-0"></span>
+            </span>
+            <p class="mt-4 font-display text-2xl font-semibold">¡Listo, ya estás en la lista!</p>
+            <p class="mt-2 max-w-[40ch] leading-relaxed text-ink/80">Te avisaremos cuando abramos en <span data-ciudad></span>.</p>
+          </div>
+        </div>
+      </section>
+      </div>
+    </main>
+
+    <footer class="border-t border-line">
+      <div class="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-10 text-sm text-muted md:flex-row md:items-center md:justify-between md:px-8">
+        <a href="#" class="flex items-center rounded-lg" aria-label="MiDepa, ir al inicio">
+          <img src="./src/assets/general/midepa-logo.svg" alt="MiDepa" width="75" height="40" class="h-10 w-auto" />
+        </a>
+        <p>Proyecto escolar. Los datos, precios y testimonios son de ejemplo.</p>
+        <ul class="flex gap-6">
+          <li><a class="hover:text-ink" href="#como-funciona">Cómo funciona</a></li>
+          <li><a class="hover:text-ink" href="#preguntas">Preguntas</a></li>
+        </ul>
+      </div>
+    </footer>
+    <!-- Asistente de búsqueda simulado (src/assistant.js) -->
+    <button id="asistente-boton" type="button" aria-expanded="false" aria-controls="asistente"
+      class="fixed bottom-4 right-4 z-40 inline-flex cursor-pointer items-center gap-2 rounded-full bg-accent px-4 py-3.5 font-medium text-accent-ink shadow-soft transition-[background-color,transform] duration-200 hover:bg-accent-hover active:translate-y-px md:bottom-6 md:right-6">
+      <i data-icon class="ph ph-chat-circle-dots text-xl" aria-hidden="true"></i>
+      <span class="hidden sm:inline">Asistente</span>
+      <span class="sr-only sm:hidden">Abrir asistente de búsqueda</span>
+    </button>
+
+    <section id="asistente" role="dialog" aria-label="Asistente de búsqueda" aria-modal="false"
+      class="fixed inset-0 z-50 hidden h-dvh flex-col overflow-hidden bg-surface sm:inset-auto sm:bottom-20 sm:right-4 sm:z-40 sm:h-[min(75dvh,620px)] sm:w-[24rem] sm:rounded-3xl sm:shadow-soft sm:ring-1 sm:ring-line md:bottom-24 md:right-6">
+      <header class="flex items-center justify-between gap-3 border-b border-line px-4 pb-3 pt-[max(0.75rem,env(safe-area-inset-top))]">
+        <div class="flex items-center gap-2.5">
+          <span class="grid size-9 place-items-center rounded-full bg-accent-soft text-accent" aria-hidden="true"><i class="ph ph-sparkle text-lg"></i></span>
+          <div>
+            <p class="font-display font-semibold leading-tight">Asistente de búsqueda</p>
+            <p class="text-xs text-muted">Busca en los cuartos disponibles</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-1">
+          <button id="asistente-reiniciar" type="button" class="grid size-11 cursor-pointer place-items-center rounded-full text-muted transition-colors hover:bg-surface-2 hover:text-ink" aria-label="Empezar una conversación nueva">
+            <i class="ph ph-arrow-counter-clockwise text-lg" aria-hidden="true"></i>
+          </button>
+          <button id="asistente-cerrar" type="button" class="grid size-11 cursor-pointer place-items-center rounded-full text-ink transition-colors hover:bg-surface-2 sm:hidden" aria-label="Cerrar asistente">
+            <i class="ph ph-x text-xl" aria-hidden="true"></i>
+          </button>
+        </div>
+      </header>
+
+      <ul id="asistente-mensajes" class="flex-1 space-y-4 overflow-y-auto overflow-x-hidden overscroll-contain p-4" aria-live="polite"></ul>
+
+      <form id="asistente-form" class="flex items-center gap-2 border-t border-line bg-surface px-3 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]" autocomplete="off">
+        <label for="asistente-texto" class="sr-only">Escribe qué cuarto buscas</label>
+        <input id="asistente-texto" type="text" maxlength="200" placeholder="Ej. cerca del Tec, menos de 10 mil"
+          class="h-11 min-w-0 flex-1 rounded-full border border-line bg-surface px-4 text-base text-ink sm:text-[15px] placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30" />
+        <button type="submit" class="grid size-11 shrink-0 cursor-pointer place-items-center rounded-full bg-accent text-accent-ink transition-colors hover:bg-accent-hover" aria-label="Enviar">
+          <i class="ph ph-paper-plane-right text-lg" aria-hidden="true"></i>
+        </button>
+      </form>
+    </section>
+
+    <!-- Detalle de un cuarto (demo) -->
+    <dialog id="cuarto-dialog" aria-labelledby="cuarto-titulo" class="m-auto w-[min(100%-2rem,52rem)] max-h-[90dvh] overflow-y-auto rounded-3xl bg-surface p-0 text-ink shadow-soft backdrop:bg-neutral-800/60 backdrop:backdrop-blur-sm"></dialog>
+    <!-- Visor del recorrido interactivo -->
+    <dialog id="tour" aria-label="Recorrido interactivo de la habitación" class="fixed inset-0 m-0 size-full max-h-none max-w-none overflow-hidden bg-transparent p-0 text-white backdrop:bg-transparent">
+      <div id="tour-stage" class="absolute inset-0 bg-neutral-800">
+        <img id="tour-still" src="./src/assets/cuartos/guadalajara/colonia-olimpica-estudio-360-inicio.jpg" alt="" class="absolute inset-0 size-full object-cover transition-opacity duration-500" />
+        <div id="tour-canvas" class="absolute inset-0 touch-none cursor-grab opacity-0 transition-opacity duration-500 active:cursor-grabbing" role="img" aria-label="Vista interactiva del cuarto. Arrastra o usa las flechas para mirar alrededor."></div>
+        <div id="tour-hotspots" class="pointer-events-none absolute inset-0"></div>
+
+        <div data-tour-ui class="pointer-events-none absolute inset-x-0 top-0 flex items-start justify-between gap-4 p-4 md:p-6">
+          <div class="pointer-events-auto rounded-2xl bg-white px-4 py-2.5 text-ink shadow-soft">
+            <p class="font-display font-semibold leading-tight" data-tour-title>Estudio amueblado con cocineta</p>
+            <p class="text-sm text-muted" data-tour-subtitle>Colonia Olímpica, Guadalajara</p>
+          </div>
+          <button type="button" data-tour="close" autofocus class="pointer-events-auto grid size-11 cursor-pointer place-items-center rounded-full bg-white text-ink shadow-soft transition-transform active:scale-95" aria-label="Cerrar recorrido">
+            <i class="ph ph-x text-xl" aria-hidden="true"></i>
+          </button>
+        </div>
+
+        <div data-tour-ui class="absolute bottom-4 right-4 flex flex-col overflow-hidden rounded-full bg-white text-ink shadow-soft md:bottom-6 md:right-6">
+          <button type="button" data-tour="zoom-in" class="grid size-11 cursor-pointer place-items-center transition-colors hover:bg-surface-2" aria-label="Acercar"><i class="ph ph-plus text-lg" aria-hidden="true"></i></button>
+          <button type="button" data-tour="zoom-out" class="grid size-11 cursor-pointer place-items-center border-t border-line transition-colors hover:bg-surface-2" aria-label="Alejar"><i class="ph ph-minus text-lg" aria-hidden="true"></i></button>
+          <button type="button" data-tour="reset" class="grid size-11 cursor-pointer place-items-center border-t border-line transition-colors hover:bg-surface-2" aria-label="Volver a la vista inicial"><i class="ph ph-arrow-counter-clockwise text-lg" aria-hidden="true"></i></button>
+          <button type="button" data-tour="hotspots" class="grid size-11 cursor-pointer place-items-center border-t border-line transition-colors hover:bg-surface-2" aria-pressed="true" aria-label="Ocultar puntos de información"><i class="ph ph-eye text-lg" aria-hidden="true"></i></button>
+        </div>
+
+        <p id="tour-hint" data-tour-ui class="pointer-events-none absolute bottom-4 left-4 right-20 flex items-center gap-2 rounded-2xl bg-neutral-800/65 px-4 py-2.5 text-sm backdrop-blur-md transition-opacity duration-500 md:bottom-6 md:left-1/2 md:right-auto md:-translate-x-1/2 md:whitespace-nowrap md:rounded-full">
+          <i class="ph ph-hand-grabbing text-lg" aria-hidden="true"></i><span data-hint-text>Arrastra para mirar, usa la rueda para acercar</span>
+        </p>
+      </div>
+    </dialog>
+  </body>
+</html>
