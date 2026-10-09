@@ -3,9 +3,9 @@
 
 // Fotos de los cuartos: src/assets/cuartos/<ciudad>/<zona>-<número>.jpg
 // Para cambiar la foto de un cuarto, reemplaza el archivo con el mismo nombre.
-const FOTOS = import.meta.glob("./assets/cuartos/*/*.jpg", { eager: true, import: "default" });
+const FOTOS = import.meta.glob("../assets/cuartos/*/*.jpg", { eager: true, import: "default" });
 const foto = (ruta) => {
-  const url = FOTOS[`./assets/cuartos/${ruta}`];
+  const url = FOTOS[`../assets/cuartos/${ruta}`];
   if (!url) console.error(`Falta la foto src/assets/cuartos/${ruta}`);
   return url;
 };

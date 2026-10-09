@@ -1,5 +1,5 @@
 // Asistente de búsqueda SIMULADO: entiende frases con reglas y palabras clave
-// (sin IA ni servidor) y busca en el catálogo de src/data.js.
+// (sin IA ni servidor) y busca en el catálogo de src/sistema/data.js.
 import { animate } from "motion";
 import { ZONES, ROOMS } from "./data.js";
 import { openRoom, overall, norm, esc, zoneOf } from "./demo.js";

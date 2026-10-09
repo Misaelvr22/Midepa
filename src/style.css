@@ -101,7 +101,7 @@
   html { scroll-behavior: auto; }
 }
 
-/* Animaciones extra (src/extras.js). Estados iniciales para que no parpadee el contenido. */
+/* Animaciones extra (src/landing/animaciones.js). Estados iniciales para que no parpadee el contenido. */
 .split-mask {
   display: inline-block;
   overflow: hidden;
@@ -191,7 +191,7 @@
   border-radius: 9999px;
 }
 
-/* Presentación "la casa se arma" (src/armado.js). Piezas y etiquetas van en px de la
+/* Presentación "la casa se arma" (src/landing/armado.js). Piezas y etiquetas van en px de la
    imagen original convertidos a % de la casa; el JS solo mueve con transform. */
 #armado-casa {
   transform: translate(-50%, -50%);

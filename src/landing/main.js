@@ -1,36 +1,11 @@
-import "@fontsource-variable/outfit";
-import "@fontsource-variable/work-sans";
-import "@phosphor-icons/web/regular";
-import "@phosphor-icons/web/fill";
-
-import { animate, inView, scroll } from "motion";
-import { BRAND_NAME } from "./config.js";
-import "./demo.js";
+// Landing (index.html): presentación del producto hasta preguntas frecuentes y lista de espera.
+// La búsqueda de cuartos vive aparte, en buscar.html (src/sistema/).
+import { animate, scroll } from "motion";
+import { reduceMotion, ease } from "../compartido/base.js";
+import { openTour, TOUR_ESTUDIO_GDL } from "../compartido/tour.js";
 import "./hero.js";
-import "./tour.js";
-import "./assistant.js";
-import "./map.js";
-import "./extras.js";
+import "./animaciones.js";
 import "./armado.js";
-
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-const ease = [0.16, 1, 0.3, 1];
-
-// Nombre de marca en un solo lugar (src/config.js)
-document.querySelectorAll("[data-brand]").forEach((el) => (el.textContent = BRAND_NAME));
-document.title = document.title.replace("[Nombre]", BRAND_NAME);
-
-// Entrada de secciones al aparecer en pantalla (jerarquía de lectura)
-if (!reduceMotion) {
-  inView(
-    "[data-reveal]",
-    (el) => {
-      const i = Number(getComputedStyle(el).getPropertyValue("--i")) || 0;
-      animate(el, { opacity: [0, 1], y: [24, 0] }, { duration: 0.7, delay: i * 0.08, ease });
-    },
-    { amount: 0.2 },
-  );
-}
 
 // Parallax al hacer scroll (progreso 0 cuando el elemento asoma abajo, 1 cuando sale arriba).
 // data-parallax-img: la foto se mueve más lento que su marco (va un poco agrandada para no dejar huecos).
@@ -46,18 +21,11 @@ if (!reduceMotion) {
   });
 }
 
-// Menú móvil
-const menuBtn = document.getElementById("menu-btn");
-const menu = document.getElementById("menu-movil");
-const setMenu = (open) => {
-  menu.classList.toggle("hidden", !open);
-  menuBtn.setAttribute("aria-expanded", String(open));
-  menuBtn.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
-  menuBtn.querySelector("i").className = `ph ${open ? "ph-x" : "ph-list"} text-2xl`;
-};
-menuBtn.addEventListener("click", () => setMenu(menu.classList.contains("hidden")));
-menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
-document.addEventListener("keydown", (e) => e.key === "Escape" && setMenu(false));
+// Tarjeta de la sección "Rentar a ciegas": abre el recorrido 360°
+const openBtn = document.getElementById("tour-open");
+openBtn.addEventListener("click", () => openTour(TOUR_ESTUDIO_GDL, document.getElementById("tour-thumb")));
+// Precarga three.js cuando el usuario muestra intención
+openBtn.addEventListener("pointerenter", () => import("three"), { once: true });
 
 // Preguntas frecuentes (acordeón)
 document.querySelectorAll(".faq-item").forEach((item) => {

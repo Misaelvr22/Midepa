@@ -1,33 +1,15 @@
-// Animaciones extra (se pueden quitar borrando este archivo y su import en main.js):
-// 1. Títulos [data-split] que se revelan palabra por palabra.
-// 2. Línea de "Cómo funciona" que se llena con el scroll y enciende cada paso.
-// 3. Contadores [data-count] (precio y calificación) que suben al aparecer.
+// Animaciones extra de la landing (se pueden quitar borrando este archivo y su import en main.js):
+// (los títulos palabra por palabra [data-split] están en src/compartido/base.js)
+// 1. Línea de "Cómo funciona" que se llena con el scroll y enciende cada paso.
+// 2. Contadores [data-count] (precio y calificación) que suben al aparecer.
 // Con reduced motion no se hace nada y el contenido queda tal cual.
-import { animate, inView, scroll, stagger } from "motion";
+import { animate, inView, scroll } from "motion";
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const ease = [0.16, 1, 0.3, 1];
 
 if (!reduceMotion) {
-  // 1. Títulos palabra por palabra: cada palabra va en una máscara y sube desde abajo.
-  // El lector de pantalla lee el título completo (aria-label), no las palabras sueltas.
-  document.querySelectorAll("[data-split]").forEach((h) => {
-    const words = h.textContent.trim().split(/\s+/);
-    h.setAttribute("aria-label", words.join(" "));
-    h.innerHTML = words
-      .map((w) => `<span class="split-mask" aria-hidden="true"><span class="split-word">${w}</span></span>`)
-      .join(" ");
-    h.style.opacity = "1";
-    inView(
-      h,
-      () => {
-        animate(h.querySelectorAll(".split-word"), { y: ["110%", "0%"] }, { duration: 0.9, delay: stagger(0.06), ease });
-      },
-      { amount: 0.5 },
-    );
-  });
-
-  // 2. Pasos: en escritorio la línea avanza con el scroll y cada círculo se enciende
+  // 1. Pasos: en escritorio la línea avanza con el scroll y cada círculo se enciende
   // cuando la línea lo alcanza. En celular (línea oculta) se encienden al aparecer.
   const pasos = document.querySelector("#como-funciona ol");
   const linea = document.getElementById("pasos-linea");
@@ -47,7 +29,7 @@ if (!reduceMotion) {
   );
   iconos.forEach((icono) => inView(icono, () => !linea.offsetParent && encender(icono, true), { amount: 1 }));
 
-  // 3. Contadores: suben desde 0 y la estrella da un giro al terminar.
+  // 2. Contadores: suben desde 0 y la estrella da un giro al terminar.
   const formato = (n, decimales) =>
     n.toLocaleString("es-MX", { minimumFractionDigits: decimales, maximumFractionDigits: decimales });
   document.querySelectorAll("[data-count]").forEach((el) => {

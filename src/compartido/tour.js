@@ -8,8 +8,8 @@
 //
 // Uso: openTour(config, elementoDeOrigen). La transición sale del rectángulo del elemento.
 import { animate } from "motion";
-import estudioGdl from "./assets/cuartos/guadalajara/colonia-olimpica-estudio-360.jpg";
-import estudioGdlInicio from "./assets/cuartos/guadalajara/colonia-olimpica-estudio-360-inicio.jpg";
+import estudioGdl from "../assets/cuartos/guadalajara/colonia-olimpica-estudio-360.jpg";
+import estudioGdlInicio from "../assets/cuartos/guadalajara/colonia-olimpica-estudio-360-inicio.jpg";
 
 // Recorrido de la sección "Rentar a ciegas" (estudio en la Colonia Olímpica, Guadalajara)
 export const TOUR_ESTUDIO_GDL = {
@@ -122,12 +122,6 @@ dialog.addEventListener("cancel", (e) => {
   closeTour();
 });
 dialog.querySelector('[data-tour="close"]').addEventListener("click", closeTour);
-
-// Tarjeta de la sección "Rentar a ciegas"
-const openBtn = document.getElementById("tour-open");
-openBtn.addEventListener("click", () => openTour(TOUR_ESTUDIO_GDL, document.getElementById("tour-thumb")));
-// Precarga three.js cuando el usuario muestra intención
-openBtn.addEventListener("pointerenter", () => import("three"), { once: true });
 
 // ---------- Visor ----------
 

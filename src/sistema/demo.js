@@ -1,7 +1,7 @@
-// Demo de búsqueda por zona. Todo es simulado en el navegador con datos de src/data.js.
+// Demo de búsqueda por zona. Todo es simulado en el navegador con datos de src/sistema/data.js.
 import { animate, stagger } from "motion";
 import { ZONES, ROOMS } from "./data.js";
-import { openTour } from "./tour.js";
+import { openTour } from "../compartido/tour.js";
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const ease = [0.16, 1, 0.3, 1];
@@ -52,7 +52,7 @@ const overall = (room) => {
   return v.reduce((a, b) => a + b, 0) / v.length;
 };
 const roomsIn = (zoneId) => ROOMS.filter((r) => r.zone === zoneId);
-const img = (src) => src; // cada cuarto trae su foto importada en src/data.js
+const img = (src) => src; // cada cuarto trae su foto importada en src/sistema/data.js
 
 function matchZones(query) {
   const q = norm(query);
@@ -190,7 +190,7 @@ function renderCities() {
 
 function markDirectory() {
   cityGrid.querySelectorAll("[data-dir-zone]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.dirZone === state.zoneId)));
-  // Avisa al mapa (src/map.js) qué zona se está viendo
+  // Avisa al mapa (src/sistema/map.js) qué zona se está viendo
   document.dispatchEvent(new CustomEvent("zona:activa", { detail: state.zoneId }));
 }
 
@@ -534,5 +534,5 @@ dialog.addEventListener("click", (e) => {
   if (e.target === dialog) dialog.close();
 });
 
-// Para el asistente de búsqueda (src/assistant.js)
+// Para el asistente de búsqueda (src/sistema/assistant.js)
 export { openRoom, money, overall, norm, esc, zoneOf, selectZone };

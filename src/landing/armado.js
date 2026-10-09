@@ -16,8 +16,8 @@ const interior = document.getElementById("armado-interior");
 const scrim = document.getElementById("armado-velo");
 const captions = [...section.querySelectorAll("[data-armado-caption]")];
 
-const urls = import.meta.glob("./assets/armado/*.webp", { eager: true, query: "?url", import: "default" });
-const url = (id) => urls[`./assets/armado/${id}.webp`];
+const urls = import.meta.glob("../assets/armado/*.webp", { eager: true, query: "?url", import: "default" });
+const url = (id) => urls[`../assets/armado/${id}.webp`];
 
 // Tamaño de la imagen original y centro de la casa
 const W = 2528;

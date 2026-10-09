@@ -8,4 +8,10 @@ export default defineConfig({
   plugins: [tailwindcss()],
   server: { allowedHosts: tunnelHosts },
   preview: { allowedHosts: tunnelHosts },
+  // Dos páginas: la landing (index.html) y el sistema de búsqueda (buscar.html)
+  build: {
+    rolldownOptions: {
+      input: { landing: "index.html", sistema: "buscar.html" },
+    },
+  },
 });

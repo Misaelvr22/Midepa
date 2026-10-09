@@ -9,7 +9,7 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="/src/style.css" />
     <script>document.documentElement.classList.add("js");</script>
-    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/landing/main.js"></script>
   </head>
   <body>
     <a href="#contenido" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-accent focus:px-4 focus:py-2 focus:text-accent-ink">Saltar al contenido</a>
@@ -24,7 +24,7 @@
         <ul class="hidden items-center gap-8 text-[15px] text-muted md:flex">
           <li><a class="transition-colors hover:text-ink" href="#como-funciona">Cómo funciona</a></li>
           <li><a class="transition-colors hover:text-ink" href="#funciones">Funciones</a></li>
-          <li><a class="transition-colors hover:text-ink" href="#buscar">Buscar</a></li>
+          <li><a class="transition-colors hover:text-ink" href="buscar.html">Buscar</a></li>
           <li><a class="transition-colors hover:text-ink" href="#preguntas">Preguntas</a></li>
         </ul>
 
@@ -40,7 +40,7 @@
         <ul class="flex flex-col text-lg">
           <li><a class="block py-3" href="#como-funciona">Cómo funciona</a></li>
           <li><a class="block py-3" href="#funciones">Funciones</a></li>
-          <li><a class="block py-3" href="#buscar">Buscar</a></li>
+          <li><a class="block py-3" href="buscar.html">Buscar</a></li>
           <li><a class="block py-3" href="#preguntas">Preguntas</a></li>
         </ul>
         <a href="#lista" class="btn-primary mt-3 w-full">Únete a la lista</a>
@@ -74,7 +74,7 @@
               </p>
               <div class="mt-9 flex flex-wrap gap-3" data-hero-in>
                 <a href="#lista" class="btn-primary">Únete a la lista <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
-                <a href="#buscar" class="btn text-white ring-1 ring-white/40 backdrop-blur-sm hover:bg-white/10">Busca tu zona</a>
+                <a href="buscar.html" class="btn text-white ring-1 ring-white/40 backdrop-blur-sm hover:bg-white/10">Busca tu zona</a>
               </div>
             </div>
 
@@ -102,7 +102,7 @@
 
       <!-- Telón: el resto de la página sube por encima del hero fijo (ver #hero en style.css) -->
       <div id="telon" class="relative z-10 overflow-clip bg-bg">
-      <!-- PRESENTACIÓN: la casa se arma con el scroll y la cámara entra a la recámara (src/armado.js) -->
+      <!-- PRESENTACIÓN: la casa se arma con el scroll y la cámara entra a la recámara (src/landing/armado.js) -->
       <section id="armado" class="relative h-[520vh] max-md:h-[440vh]" aria-label="Cómo está hecho un cuarto">
         <div id="armado-stage" class="sticky top-[calc(4rem+1px)] h-[calc(100dvh-4rem-1px)] overflow-hidden bg-neutral-800">
           <img id="armado-fondo" src="./src/assets/armado/paisaje.webp" alt="" width="2000" height="1342" class="absolute inset-0 size-full object-cover" />
@@ -132,7 +132,7 @@
         </div>
       </section>
 
-      <!-- EL PROBLEMA + RECORRIDO INTERACTIVO (visor en src/tour.js) -->
+      <!-- EL PROBLEMA + RECORRIDO INTERACTIVO (visor en src/compartido/tour.js) -->
       <section id="recorrido" class="bg-surface-2">
         <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 md:px-8 md:py-28 lg:grid-cols-12 lg:gap-16">
           <div class="lg:col-span-5" data-reveal>
@@ -254,56 +254,6 @@
               <li class="flex items-center gap-2"><i class="ph ph-washing-machine text-xl text-accent" aria-hidden="true"></i>Lavandería</li>
             </ul>
           </article>
-        </div>
-      </section>
-
-      <!-- DEMO DE BÚSQUEDA (datos hipotéticos, ver src/data.js) -->
-      <section id="buscar" class="bg-surface-2">
-        <div class="mx-auto max-w-7xl px-4 py-20 md:px-8 md:py-28">
-          <p class="text-sm font-medium uppercase tracking-[0.16em] text-accent" data-reveal>Demo interactiva</p>
-          <h2 data-split class="mt-3 max-w-2xl text-3xl font-semibold tracking-tight md:text-5xl">Pruébalo: busca la zona de tu universidad.</h2>
-          <p class="mt-4 max-w-[60ch] text-lg leading-relaxed text-muted" data-reveal>Escribe una universidad, colonia o ciudad. Los cuartos, caseros y reseñas son hipotéticos.</p>
-
-          <form id="demo-form" role="search" class="relative z-20 mt-10 max-w-3xl" autocomplete="off" data-reveal>
-            <label for="demo-q" class="sr-only">Universidad, colonia o ciudad</label>
-            <div class="flex flex-col gap-3 rounded-3xl border border-line bg-surface p-2 shadow-soft sm:flex-row sm:items-center sm:rounded-full">
-              <div class="flex flex-1 items-center gap-3 px-4">
-                <i class="ph ph-magnifying-glass text-xl text-muted" aria-hidden="true"></i>
-                <input
-                  id="demo-q" name="q" type="text"
-                  class="h-12 w-full bg-transparent text-base text-ink placeholder:text-muted focus:outline-none"
-                  placeholder="Ej. UNAM, BUAP o Monterrey"
-                  role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="demo-sugerencias"
-                />
-              </div>
-              <button type="submit" class="btn-primary">Buscar</button>
-            </div>
-            <ul id="demo-sugerencias" role="listbox" aria-label="Sugerencias" class="absolute inset-x-0 top-full z-30 mt-2 hidden overflow-hidden rounded-2xl border border-line bg-surface p-1.5 shadow-soft"></ul>
-          </form>
-
-          <!-- Directorio de ciudades y zonas disponibles (se genera desde src/data.js) -->
-          <div class="mt-10" data-reveal>
-            <div class="flex flex-wrap items-center justify-between gap-3">
-              <h3 class="flex items-center gap-2 font-display text-lg font-semibold"><i class="ph ph-map-trifold text-xl text-accent" aria-hidden="true"></i>O explora por ciudad</h3>
-              <div role="group" aria-label="Cómo ver las zonas" class="inline-flex rounded-full bg-surface p-1 text-sm ring-1 ring-line">
-                <button type="button" data-vista="mapa" aria-pressed="true" class="inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-2 font-medium transition-colors aria-pressed:bg-accent aria-pressed:text-accent-ink"><i class="ph ph-map-trifold" aria-hidden="true"></i>Mapa</button>
-                <button type="button" data-vista="lista" aria-pressed="false" class="inline-flex cursor-pointer items-center gap-1.5 rounded-full px-3.5 py-2 font-medium transition-colors aria-pressed:bg-accent aria-pressed:text-accent-ink"><i class="ph ph-list-bullets" aria-hidden="true"></i>Lista</button>
-              </div>
-            </div>
-            <div id="demo-mapa-wrap" class="mt-4">
-              <div id="demo-mapa" class="isolate h-[440px] overflow-hidden rounded-3xl bg-surface-2 ring-1 ring-line md:h-[500px]" role="region" aria-label="Mapa de zonas con cuartos disponibles"></div>
-              <p class="mt-2 text-sm text-muted">Toca una ciudad para acercarte y una zona para ver sus cuartos. La línea punteada marca la distancia a la universidad.</p>
-            </div>
-            <div id="demo-ciudades" hidden class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5"></div>
-          </div>
-
-          <div id="demo-resultados" class="mt-12" aria-live="polite">
-            <div class="flex flex-col items-center rounded-3xl border border-dashed border-line px-6 py-16 text-center">
-              <i class="ph ph-map-pin text-4xl text-accent" aria-hidden="true"></i>
-              <p class="mt-4 font-display text-xl font-semibold">Aquí aparecerán los cuartos de la zona</p>
-              <p class="mt-2 max-w-[42ch] text-muted">Busca arriba o elige una zona de la lista. Verás reseñas, alertas de estafa y la guía del barrio.</p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -451,7 +401,7 @@
           </form>
 
           <div id="form-exito" class="hidden flex-col justify-center focus:outline-none" role="status" tabindex="-1">
-            <!-- Check animado: el círculo se dibuja, se rellena y aparece la palomita (src/main.js) -->
+            <!-- Check animado: el círculo se dibuja, se rellena y aparece la palomita (src/landing/main.js) -->
             <span id="exito-check" class="relative grid size-16 place-items-center" aria-hidden="true">
               <span data-onda class="absolute inset-0 rounded-full bg-success/25 opacity-0"></span>
               <svg viewBox="0 0 64 64" class="relative size-16 overflow-visible">
@@ -481,48 +431,6 @@
         </ul>
       </div>
     </footer>
-    <!-- Asistente de búsqueda simulado (src/assistant.js) -->
-    <button id="asistente-boton" type="button" aria-expanded="false" aria-controls="asistente"
-      class="fixed bottom-4 right-4 z-40 inline-flex cursor-pointer items-center gap-2 rounded-full bg-accent px-4 py-3.5 font-medium text-accent-ink shadow-soft transition-[background-color,transform] duration-200 hover:bg-accent-hover active:translate-y-px md:bottom-6 md:right-6">
-      <i data-icon class="ph ph-chat-circle-dots text-xl" aria-hidden="true"></i>
-      <span class="hidden sm:inline">Asistente</span>
-      <span class="sr-only sm:hidden">Abrir asistente de búsqueda</span>
-    </button>
-
-    <section id="asistente" role="dialog" aria-label="Asistente de búsqueda" aria-modal="false"
-      class="fixed inset-0 z-50 hidden h-dvh flex-col overflow-hidden bg-surface sm:inset-auto sm:bottom-20 sm:right-4 sm:z-40 sm:h-[min(75dvh,620px)] sm:w-[24rem] sm:rounded-3xl sm:shadow-soft sm:ring-1 sm:ring-line md:bottom-24 md:right-6">
-      <header class="flex items-center justify-between gap-3 border-b border-line px-4 pb-3 pt-[max(0.75rem,env(safe-area-inset-top))]">
-        <div class="flex items-center gap-2.5">
-          <span class="grid size-9 place-items-center rounded-full bg-accent-soft text-accent" aria-hidden="true"><i class="ph ph-sparkle text-lg"></i></span>
-          <div>
-            <p class="font-display font-semibold leading-tight">Asistente de búsqueda</p>
-            <p class="text-xs text-muted">Busca en los cuartos disponibles</p>
-          </div>
-        </div>
-        <div class="flex items-center gap-1">
-          <button id="asistente-reiniciar" type="button" class="grid size-11 cursor-pointer place-items-center rounded-full text-muted transition-colors hover:bg-surface-2 hover:text-ink" aria-label="Empezar una conversación nueva">
-            <i class="ph ph-arrow-counter-clockwise text-lg" aria-hidden="true"></i>
-          </button>
-          <button id="asistente-cerrar" type="button" class="grid size-11 cursor-pointer place-items-center rounded-full text-ink transition-colors hover:bg-surface-2 sm:hidden" aria-label="Cerrar asistente">
-            <i class="ph ph-x text-xl" aria-hidden="true"></i>
-          </button>
-        </div>
-      </header>
-
-      <ul id="asistente-mensajes" class="flex-1 space-y-4 overflow-y-auto overflow-x-hidden overscroll-contain p-4" aria-live="polite"></ul>
-
-      <form id="asistente-form" class="flex items-center gap-2 border-t border-line bg-surface px-3 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))]" autocomplete="off">
-        <label for="asistente-texto" class="sr-only">Escribe qué cuarto buscas</label>
-        <input id="asistente-texto" type="text" maxlength="200" placeholder="Ej. cerca del Tec, menos de 10 mil"
-          class="h-11 min-w-0 flex-1 rounded-full border border-line bg-surface px-4 text-base text-ink sm:text-[15px] placeholder:text-muted focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30" />
-        <button type="submit" class="grid size-11 shrink-0 cursor-pointer place-items-center rounded-full bg-accent text-accent-ink transition-colors hover:bg-accent-hover" aria-label="Enviar">
-          <i class="ph ph-paper-plane-right text-lg" aria-hidden="true"></i>
-        </button>
-      </form>
-    </section>
-
-    <!-- Detalle de un cuarto (demo) -->
-    <dialog id="cuarto-dialog" aria-labelledby="cuarto-titulo" class="m-auto w-[min(100%-2rem,52rem)] max-h-[90dvh] overflow-y-auto rounded-3xl bg-surface p-0 text-ink shadow-soft backdrop:bg-neutral-800/60 backdrop:backdrop-blur-sm"></dialog>
     <!-- Visor del recorrido interactivo -->
     <dialog id="tour" aria-label="Recorrido interactivo de la habitación" class="fixed inset-0 m-0 size-full max-h-none max-w-none overflow-hidden bg-transparent p-0 text-white backdrop:bg-transparent">
       <div id="tour-stage" class="absolute inset-0 bg-neutral-800">
